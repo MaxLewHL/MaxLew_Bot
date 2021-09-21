@@ -20,3 +20,5 @@ async def on_member_join(member):
 async def on_member_remove(member):
     channel = bot.get_channel(882778508013756427)
     await channel.send(f'{member} 离开了本伺服器qwq')
+
+# 还有一个bot.run因不想泄露BOT token而删除了
