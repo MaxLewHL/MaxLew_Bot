@@ -15,4 +15,3 @@ async def on_member_join(member):
 @bot.event
 async def on_member_remove(member):
     print(f'{member} leave qwq')
-    
