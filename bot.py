@@ -106,3 +106,130 @@ class Main(Cog_Extension):
 
 def setup(bot):
     bot.add_cog(Main(bot))
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+import discord
+from discord.ext import commands
+import random
+import json
+from core.classes import Cog_Extension
+
+with open('setting.json', 'r', encoding='utf8') as jFile:
+    jData = json.load(jFile)
+
+
+class React(Cog_Extension):
+    @commands.command()
+    async def picture(self, ctx):
+            random_pick = random.choice(jData['pic'])
+            pic = discord.File(random_pick)
+            await ctx.send(file= pic)
+
+    @commands.command()
+    async def web_picture(self, ctx):
+        random_pick = random.choice(jData['url_pic'])
+        await ctx.send(random_pick)
+
+def setup(bot):
+    bot.add_cog(React(bot))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+import discord
+from discord.ext import commands
+import json
+import random
+import os
+
+from discord.ext.commands.cog import CogMeta
+from core.classes import Cog_Extension
+
+with open('setting.json', 'r', encoding='utf8') as jFile:
+    jData = json.load(jFile)
+
+class Event(Cog_Extension):
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        channel = self.bot.get_channel(int(jData['Welcome_channel']))
+        await channel.send(f'@{member} 加入了本伺服器！')
+
+    @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        channel = self.bot.get_channel(int(jData['Leave_channel']))
+        await channel.send(f'@{member} 离开了本伺服器qwq')
+
+    @commands.Cog.listener()
+    async def on_message(self, msg):
+        keyword = (jData['keyword'])
+        if msg.content in keyword and msg.author != self.bot.user:
+            await msg.channel.send(f'!mute @{msg.author}')
+    
+    @commands.Cog.listener()
+    async def on_message(self, msg):
+        if msg.content.endswith('eeee') and msg.author != self.bot.user:
+            await msg.channel.send(f'{msg.author} yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+
+def setup(bot):
+    bot.add_cog(Event(bot))
