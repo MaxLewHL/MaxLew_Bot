@@ -52,3 +52,57 @@ for finename in os.listdir('./cmds'):
 
 if __name__ == "__main__":
     bot.run(jData['TOKEN'])
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+from python.testbot.core.classes import Cog_Extension
+import discord
+from discord.ext import commands
+from core.classes import Cog_Extension
+import datetime
+
+class Main(Cog_Extension):
+        
+    @commands.command()
+    async def ping(self, ctx):
+        embed = discord.Embed(title="Ping", description="result", color=0x001eff, 
+        timestamp=datetime.datetime.now())
+        embed.set_author(name="Maxlew", url="https://discord.gg/TeDkjm9KFC")
+        embed.add_field(name="Bot Lantency:", value=f"{round(self.bot.latency*1000)} (ms)\nWeSocket: Error404(no do")
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def hi(self, ctx):
+        await ctx.send(f'hi')
+    
+    @commands.command()
+    async def repeat(self, ctx, *,msg):
+        await ctx.message.delete()
+        await ctx.send(msg)
+    
+    @commands.command()
+    async def clean(self, ctx, num: int):
+        limit=num+1
+        await ctx.channel.purge(limit=num+1)
+        await ctx.send(f"成功删除 {limit} 条讯息！")
+
+def setup(bot):
+    bot.add_cog(Main(bot))
